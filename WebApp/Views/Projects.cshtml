@@ -1,0 +1,61 @@
+﻿
+
+
+
+@{
+    ViewData["Title"] = "Projects";
+}
+
+
+
+<div class="main-header">
+    <h1>Projects</h1>
+    <button class="btn btn-blue" data-type="modal" data-target="#add-project-modal">
+        <i class="fa-solid fa-plus"></i>
+        <span>Add Project</span>
+    </button>
+</div>
+
+<section class="project-list">
+    <div class="surface">
+      
+            <div class="card-header">
+                <div class="project-image">
+                    <img src="~/images/project-image.svg" />
+                </div>
+                <h5 class="project-name"></h5>
+                <span class="client-name"></span>
+                <div id="project-actions-container">
+                    <button type="button" data-type="dropdown" data-target="#project-dropdown-1" class="btn-action">
+                        <i class="fa-solid fa-ellipsis"></i>
+                    </button>
+                    <div class="dropdown" id="project-dropdown-1">
+                        <div class="dropdown-body">
+                            <a href="#" class="dropdown-action">
+                                <i class="fa-solid fa-pen-to-square"></i>
+                                <span>Edit</span>
+                            </a>
+                            <hr />
+                            <a href="#" class="dropdown-action red">
+                                <i class="fa-solid fa-trash"></i>
+                                <span>Delete Project</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="card-body">
+          
+        
+            </div>
+
+           
+        }
+
+   
+    </div>
+</section>
+
+
+@await Html.PartialAsync("Partials/Sections/_AddProjectModal")
+

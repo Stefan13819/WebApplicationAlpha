@@ -1,0 +1,54 @@
+﻿<div class="top-buttons">
+    <button type="button" data-type="dropdown" data-target="#notifications" class="btn-notification">
+        <i class="fa-solid fa-gear fa-lg"></i>
+    </button>
+    <div id="account-container">
+        <button type="button" data-type="dropdown" data-target="#account-dropdown" class="btn-account">
+            <img src="~/images/avatar.png" alt="avatar">
+        </button>
+        <div class="dropdown" id="account-dropdown">
+            <div class="dropdown-header">
+                <div class="account-name">
+                    <img src="~/images/avatar.png" alt="avatar">
+                    <span>Hans Mattin-Lassei</span>
+                </div>
+            </div>
+            <div class="dropdown-body">
+                <a asp-controller="Auth" asp-action="Logout" class="dropdown-action">
+                    <i class="fa-solid fa-right-from-bracket"></i>
+                    <span>Logout</span>
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const dropdownButtons = document.querySelectorAll('[data-type="dropdown"]');
+
+      dropdownButtons.forEach(button => {
+        button.addEventListener("click", event => {
+          event.stopPropagation(); // Prevent bubbling
+
+          const targetSelector = button.getAttribute("data-target");
+          const dropdown = document.querySelector(targetSelector);
+
+          // Close other dropdowns
+          document.querySelectorAll('.dropdown').forEach(d => {
+            if (d !== dropdown) d.classList.remove('dropdown-show');
+          });
+
+          // Toggle the clicked dropdown
+          if (dropdown) dropdown.classList.toggle("dropdown-show");
+        });
+      });
+
+      // Close dropdowns if clicking outside
+      document.addEventListener("click", () => {
+        document.querySelectorAll('.dropdown').forEach(dropdown => {
+          dropdown.classList.remove("dropdown-show");
+        });
+      });
+    });
+</script>

@@ -1,0 +1,66 @@
+﻿@model MemberSignUpForm
+@{
+	Layout = "_Layout";
+	ViewData["Title"] = "Create Account";
+}
+<section id="SignUp">
+
+<div class="center-screen">
+	<div class="surface">
+		<div class="card-header">
+			<h1>Create Account </h1>
+		</div>
+		
+		<div class="card-body">
+				<form method="post" asp-controller="Auth" asp-action="SignUp" novalidate enctype="multipart/form-data">
+		
+				@if (!string.IsNullOrEmpty(ViewBag?.ErrorMessage))
+				{
+					<div class="alert error">
+						@ViewBag?.ErrorMessage
+					</div>
+				}
+				<div class="form-group">
+					<label class="form-label" asp-for="FirstName"></label>
+					<input class="form-input" asp-for="FirstName" />
+					<span asp-validation-for="FirstName"></span>
+				</div>
+				<div class="form-group">
+					<label class="form-label" asp-for="LastName"></label>
+					<input class="form-input" asp-for="LastName" />
+					<span asp-validation-for="LastName"></span>
+				</div>
+				<div class="form-group">
+					<label class="form-label" asp-for="Email"></label>
+					<input class="form-input" asp-for="Email" />
+					<span asp-validation-for="Email"></span>
+				</div>
+					<div class="form-group">
+						<label class="form-label" asp-for="PhoneNumber"></label>
+						<input class="form-input" asp-for="PhoneNumber" />
+						<span asp-validation-for="PhoneNumber"></span>
+					</div>
+				<div class="form-group">
+					<label class="form-label" asp-for="Password"></label>
+					<input class="form-input" asp-for="Password" type="password" />
+					<span asp-validation-for="Password"></span>
+				</div>
+				<div class="form-group">
+					<label class="form-label" asp-for="ConfirmPassword"></label>
+					<input class="form-input" asp-for="ConfirmPassword" type="password" />
+					<span asp-validation-for="ConfirmPassword"></span>
+				</div>
+				<div class="form-group">
+					<button type="submit" class="btn btn-blue">Create Account</button>
+				</div>
+			</form>
+
+
+
+
+		</div>
+		<div class="card-footer">Already have an Account? <a asp-controller="Auth" asp-action="Login">Log In</a> </div>
+	</div>
+</div>
+
+</section>
