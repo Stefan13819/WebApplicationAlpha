@@ -18,5 +18,7 @@ public class MemberLoginForm
     [Display(Name = "Password", Prompt = "Enter Password")]
     [DataType(DataType.Password)]
     public string Password { get; set; } = null!;
+    [Display(Name = "Remember Me")]
+    public bool RememberMe { get; set; }
 
 }

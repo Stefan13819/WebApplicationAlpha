@@ -1,7 +1,8 @@
 ﻿
+using Data.Contexts;
 using Data.Entities;
 using Microsoft.EntityFrameworkCore;
-using static Data.Repositories.ProjectRepository;
+
 
 namespace Data.Repositories;
 
@@ -21,10 +22,10 @@ public interface IProjectRepository
 
 public class ProjectRepository : IProjectRepository
     {
-        private readonly DbContext _context;
+        private readonly DataContext _context;
         private readonly DbSet<ProjectEntity> _projects;
 
-        public ProjectRepository(DbContext context)
+        public ProjectRepository(DataContext context)
         {
             _context = context;
             _projects = context.Set<ProjectEntity>();

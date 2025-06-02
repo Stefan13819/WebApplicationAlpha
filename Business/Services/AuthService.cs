@@ -17,13 +17,20 @@ public class AuthService(SignInManager<MemberEntity> signInManager, UserManager<
     private readonly UserManager<MemberEntity> _userManager = userManager;
     public async Task<bool> LoginAsync(MemberLoginForm loginForm)
     {
-        var result = await _signInManager.PasswordSignInAsync(loginForm.Email, loginForm.Password,false, false);
-        
+        var result = await _signInManager.PasswordSignInAsync(loginForm.Email, loginForm.Password, loginForm.RememberMe, lockoutOnFailure: false);
+
         return result.Succeeded;
     }
 
     public async Task<bool> SignUpAsync(MemberSignUpForm signUpForm)
     {
+
+        if (!signUpForm.AcceptTerms)
+        {
+            return false; 
+        }
+
+
         var MemberEntity = new MemberEntity
         {
             FirstName = signUpForm.FirstName,

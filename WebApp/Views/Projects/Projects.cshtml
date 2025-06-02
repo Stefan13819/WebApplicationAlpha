@@ -1,52 +1,61 @@
-﻿@{
+﻿@using Data.Entities
+@{
     ViewData["Title"] = "Projects";
 }
 
+@model IEnumerable<ProjectEntity>
+
+<div class="main-header">
+    <h1>Projects</h1>
 
 
+    <button class="btn btn-blue" data-type="modal" data-target="#add-project-modal">
+        <i class="fa-classic fa-solid fa-plus"></i>
+        <span>Add Project</span>
+    </button>
+</div>
 
-    <div class="main-header">
-        <h1>Projects</h1>
-        <button class="btn btn-blue" data-type="modal" data-target="#add-project-modal">
-            <i class="fa-classic fa-solid fa-plus"></i>
-            <span>Add Project</span>
-        </button>
-    </div>
-    <section class="project-list">
-        <!-- KORT 1 -->
+<section class="project-list">
+
+    @foreach (var project in Model.Select((p, index) => new { Project = p, Index = index }))
+    {
+        var dropdownId = $"project-dropdown-{project.Index}";
         <div class="surface">
             <div class="card-header">
                 <div class="project-image">
-                    <img src="images/project-image.svg">
+                    <img src="images/project-image.svg" />
                 </div>
-                <h5 class="project-name">Website Redesign</h5>
-                <span class="client-name">GitLab Inc.</span>
+                <h5 class="project-name">@project.Project.ProjectName</h5>
+                <span class="client-name">@project.Project.ClientName</span>
                 <div id="project-actions-container">
-                    <button type="button" data-type="dropdown" data-target="#project-dropdown-1" class="btn-action">
+                    <button type="button" data-type="dropdown" data-target="#@dropdownId" class="btn-action">
                         <i class="fa-solid fa-ellipsis"></i>
                     </button>
-                    <div class="dropdown" id="project-dropdown-1">
+                    <div class="dropdown" id="@dropdownId">
                         <div class="dropdown-body">
-                            <a href="#" class="dropdown-action">
+                            <a asp-controller="Projects" asp-action="Edit" asp-route-id="@project.Project.Id" class="dropdown-action">
                                 <i class="fa-solid fa-pen-to-square"></i>
                                 <span>Edit</span>
                             </a>
                             <hr>
-                            <a href="#" class="dropdown-action red">
-                                <i class="fa-solid fa-trash"></i>
-                                <span>Delete Project</span>
-                            </a>
+                            <form asp-controller="Projects" asp-action="Delete" asp-route-id="@project.Project.Id" method="post" onsubmit="return confirm('Are you sure you want to delete this project?');">
+                                <button type="submit" class="dropdown-action red btn-action" id="delete-project-btn">
+                                    <i class="fa-solid fa-trash"></i>
+                                    <span>Delete Project</span>
+                                </button>
+                            </form>
                         </div>
                     </div>
                 </div>
             </div>
             <div class="card-body">
-                <p>It is necessary to develop a website redesign in a corporate style.</p>
+                <p>@project.Project.Description</p>
             </div>
         </div>
-
-    </section>
-
+    }
+</section>
 
 @await Html.PartialAsync("Partials/Sections/_AddProjectModal")
+
+
 

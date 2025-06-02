@@ -1,0 +1,39 @@
+﻿@model Data.Entities.ProjectEntity
+
+<h2>Edit Project</h2>
+
+<form asp-action="Edit" method="post">
+    <input type="hidden" asp-for="Id" />
+
+    <div class="form-group">
+        <label>Project Name</label>
+        <input asp-for="ProjectName" class="form-input" />
+    </div>
+
+    <div class="form-group">
+        <label>Client Name</label>
+        <input asp-for="ClientName" class="form-input" />
+    </div>
+
+    <div class="form-group">
+        <label>Description</label>
+        <textarea asp-for="Description" class="form-input"></textarea>
+    </div>
+
+    <div class="form-group">
+        <label>Start Date</label>
+        <input asp-for="StartDate" class="form-input" type="date" />
+    </div>
+
+    <div class="form-group">
+        <label>End Date</label>
+        <input asp-for="EndDate" class="form-input" type="date" />
+    </div>
+
+    <div class="form-group">
+        <label>Budget</label>
+        <input asp-for="Budget" class="form-input" />
+    </div>
+
+    <button type="submit" class="btn btn-blue">Save Changes</button>
+</form>

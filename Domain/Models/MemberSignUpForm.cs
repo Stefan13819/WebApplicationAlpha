@@ -35,11 +35,12 @@ public class MemberSignUpForm
         public string ConfirmPassword { get; set; } = null!;
 
 
-         [DataType(DataType.PhoneNumber)]
+        [DataType(DataType.PhoneNumber)]
         [Display(Name = "Phone", Prompt = "Phone")]
-    public string? PhoneNumber { get; set; } 
+        public string? PhoneNumber { get; set; }
 
-
+    [Required(ErrorMessage = "You must accept the terms and conditions.")]
+    public bool AcceptTerms { get; set; }
 
 
 }

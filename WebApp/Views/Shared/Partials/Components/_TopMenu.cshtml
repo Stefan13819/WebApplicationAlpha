@@ -1,4 +1,11 @@
-﻿<div class="top-buttons">
+﻿@using System.Security.Claims
+@{
+    var firstName = User?.FindFirst(System.Security.Claims.ClaimTypes.GivenName)?.Value;
+    var lastName = User?.FindFirst(System.Security.Claims.ClaimTypes.Surname)?.Value;
+}
+
+
+<div class="top-buttons">
     <button type="button" data-type="dropdown" data-target="#notifications" class="btn-notification">
         <i class="fa-solid fa-gear fa-lg"></i>
     </button>
@@ -10,7 +17,7 @@
             <div class="dropdown-header">
                 <div class="account-name">
                     <img src="~/images/avatar.png" alt="avatar">
-                    <span>Hans Mattin-Lassei</span>
+                    <span>@firstName @lastName</span>
                 </div>
             </div>
             <div class="dropdown-body">

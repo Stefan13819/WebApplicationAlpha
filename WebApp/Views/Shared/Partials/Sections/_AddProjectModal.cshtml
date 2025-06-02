@@ -5,7 +5,7 @@
             <button class="btn-close" data-type="close" data-target="add-project-modal"></button>
         </div>
         <div class="card-body">
-            <form asp-controller="Projects" asp-action="" method="post" enctype="multipart/form-data">
+            <form asp-controller="Projects" asp-action="Create" method="post" enctype="multipart/form-data">
 
                 <div class="form-group">
                     <label class="form-label">Project Name</label>
@@ -54,6 +54,7 @@
                     <label class="form-label">Budget</label>
                     <input class="form-input" type="text" name="Budget" />
                 </div>
+
 
                 <button class="btn btn-blue" type="submit">Create Project</button>
             </form>
